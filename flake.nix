@@ -17,7 +17,8 @@
     {
       devShells.${currentSystem}.default = pkgs.mkShell { 
         buildInputs = with pkgs; [
-          pfetch cabal-install ghc
+          pfetch cabal-install
+          ghcid  # Cool IDE
         ];  # deps needed at runtime.
         GREETING = "Hello, Nix!";
         shellHook = ''

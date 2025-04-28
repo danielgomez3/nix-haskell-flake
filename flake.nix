@@ -20,6 +20,7 @@
           ghc  # Much depends on this FIXME: maybe specify with language?
           pfetch cabal-install
           ghcid sourceHighlight  # Cool IDE features
+          ghcide  
         ];  # deps needed at runtime.
         GREETING = "Hello, Nix!";
         shellHook = ''

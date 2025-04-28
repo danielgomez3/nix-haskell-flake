@@ -1,0 +1,27 @@
+{
+  description = "danielgomez3's Haskell development flake";
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";  # Nix Options version as well
+  };
+  outputs = {inputs, ...}:
+    let 
+      supportedSystems = {
+        linux = "x86_64-linux";
+        darwinIntel = "x86_64-darwin"; 
+        darwinAmd = "aarch64-darwin"; 
+        android = "aarch64-linux"; 
+      };
+      pkgs = inputs.nixpkgs.legacyPackages.${supportedSystems.linux};  # FIXME Specify pkgs elsewhere if you can so we can have multi-profile setups
+    in 
+    {
+      devShells.${supportedSystems.linux}.default = pkgs.mkShell { 
+        buildInputs = [ pkgs.deploy-rs pkgs.pfetch ];  # deps needed at runtime.
+        GREETING = "Hello, Nix!";
+        shellHook = ''
+          ${pkgs.pfetch}/bin/pfetch
+          echo $GREETING
+        '';
+      };
+
+    };
+}

@@ -17,6 +17,7 @@
     {
       devShells.${currentSystem}.default = pkgs.mkShell { 
         buildInputs = with pkgs; [
+          ghci  # Much depends on this FIXME: maybe specify with language?
           pfetch cabal-install
           ghcid  # Cool IDE
         ];  # deps needed at runtime.

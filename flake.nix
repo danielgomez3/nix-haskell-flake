@@ -19,7 +19,7 @@
         buildInputs = with pkgs; [
           ghc  # Much depends on this FIXME: maybe specify with language?
           pfetch cabal-install
-          ghcid  # Cool IDE
+          ghcid sourceHighlight  # Cool IDE features
         ];  # deps needed at runtime.
         GREETING = "Hello, Nix!";
         shellHook = ''

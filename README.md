@@ -1,0 +1,3 @@
+# Instructions
+
+run `nix develop`.

@@ -16,7 +16,9 @@
     in 
     {
       devShells.${currentSystem}.default = pkgs.mkShell { 
-        buildInputs = [ pkgs.deploy-rs pkgs.pfetch ];  # deps needed at runtime.
+        buildInputs = with pkgs; [
+          pfetch cabal-install ghc
+        ];  # deps needed at runtime.
         GREETING = "Hello, Nix!";
         shellHook = ''
           ${pkgs.pfetch}/bin/pfetch

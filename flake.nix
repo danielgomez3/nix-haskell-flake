@@ -5,14 +5,14 @@
   };
   outputs = inputs@{...}:
     let 
+      currentSystem = builtins.currentSystem or "x86_64-linux";  # Fallback if not detected
       supportedSystems = {
         linux = "x86_64-linux";
         darwinIntel = "x86_64-darwin"; 
         darwinAmd = "aarch64-darwin"; 
         android = "aarch64-linux"; 
       };
-      pkgs = inputs.nixpkgs.legacyPackages.${supportedSystems.linux};  # FIXME Specify pkgs elsewhere if you can so we can have multi-profile setups
-      currentSystem = builtins.currentSystem or "x86_64-linux";  # Fallback if not detected
+      pkgs = inputs.nixpkgs.legacyPackages.${currentSystem};
     in 
     {
       devShells.${currentSystem}.default = pkgs.mkShell { 

@@ -18,9 +18,8 @@
       devShells.${currentSystem}.default = pkgs.mkShell { 
         buildInputs = with pkgs; [
           ghc  # Much depends on this FIXME: maybe specify with language?
-          pfetch cabal-install
           ghcid ghciwatch haskellPackages.reflex-ghci sourceHighlight  # Cool IDE features
-          cabal stack  # Compilers
+          cabal-install stack  # Compilers
         ];  # deps needed at runtime.
         GREETING = "Hello, Nix!";
         shellHook = ''
